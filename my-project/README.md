@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DeST - Decentralized Savings & Thrift Protocol
+
+A decentralized application for rotating savings groups built on Lisk Sepolia testnet.
+
+## Features
+
+- **Create Groups**: Create new rotating savings groups with custom contribution amounts and periods
+- **Join Groups**: Browse and join existing groups
+- **Group Explorer**: View detailed information about specific groups
+- **Groups Table**: View all available groups in a comprehensive table format
+- **Contribute**: Make contributions to groups you're a member of
+- **Withdraw Earnings**: Withdraw your accumulated earnings from the protocol
+
+## New Features
+
+### Groups Table
+
+The application now includes a comprehensive table view of all available groups:
+
+- **Toggle View**: Switch between single group explorer and all groups table
+- **Real-time Data**: Loads group data directly from the blockchain
+- **Batch Loading**: Efficiently loads groups in batches to avoid overwhelming the network
+- **Join Groups**: Join groups directly from the table view
+- **Group Details**: View creator, member count, contribution amounts, periods, and current status
+- **Refresh**: Manually refresh the groups data
+
+## Components
+
+- `GroupsTable`: Displays all available groups in a table format
+- `GroupExplorer`: Shows detailed information about a specific group
+- `CreateGroup`: Form to create new groups
+- `JoinGroup`: Interface to join existing groups
+- `EarningsDisplay`: Shows user's earnings from the protocol
+- `WithdrawEarnings`: Allows users to withdraw their earnings
+
+## Technical Implementation
+
+The GroupsTable component:
+
+- Uses the `groupCounter` function to determine the total number of groups
+- Loads group data in batches using the `readGroupData` utility function
+- Implements proper error handling and loading states
+- Provides real-time blockchain data reading using viem public client
+- Supports joining groups directly from the table interface
 
 ## Getting Started
 
-First, run the development server:
+1. Install dependencies:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+   ```bash
+   npm install
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Set up environment variables:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   ```bash
+   NEXT_PUBLIC_FACTORY_ADDRESS=your_contract_address
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Run the development server:
 
-## Learn More
+   ```bash
+   npm run dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Smart Contract Integration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The application integrates with the RotatingSavingsGroupFactory smart contract:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Reads group data using the `getGroup` function
+- Gets total group count using `groupCounter`
+- Allows joining groups with `joinGroup`
+- Supports contributions with `contribute`
+- Enables earnings withdrawal with `withdrawEarnings`

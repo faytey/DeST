@@ -1,5 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { createPublicClient, http } from "viem";
+import { liskSepolia } from "wagmi/chains";
+
 export const FACTORY_ADDRESS = process.env
   .NEXT_PUBLIC_FACTORY_ADDRESS as `0x${string}`;
+
+// Create a public client for reading contract data
+const publicClient = createPublicClient({
+  chain: liskSepolia,
+  transport: http(),
+});
+
 export const FACTORY_ABI = [
   {
     anonymous: false,
@@ -214,3 +225,43 @@ export const FACTORY_ABI = [
     type: "function",
   },
 ];
+
+// Utility function to read group data
+export async function readGroupData(groupId: number) {
+  try {
+    // Read group data directly from the contract
+    const result = await publicClient.readContract({
+      address: FACTORY_ADDRESS,
+      abi: FACTORY_ABI,
+      functionName: "getGroup",
+      args: [BigInt(groupId)],
+    });
+
+    // Parse the result
+    const [
+      creator,
+      members,
+      contributionAmount,
+      contributionPeriod,
+      currentRound,
+      lastPayoutTime,
+      contributionsThisRound,
+      pot,
+    ] = result as any[];
+
+    return {
+      creator,
+      members,
+      contributionAmount,
+      contributionPeriod: Number(contributionPeriod),
+      currentRound: Number(currentRound),
+      lastPayoutTime: Number(lastPayoutTime),
+      contributionsThisRound: Number(contributionsThisRound),
+      pot,
+    };
+  } catch (error) {
+    console.error(`Error reading group ${groupId}:`, error);
+    // Return null if the group doesn't exist or there's an error
+    return null;
+  }
+}
