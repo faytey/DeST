@@ -3,7 +3,6 @@ import CreateGroup from "@/components/CreateGroup";
 import EarningsDisplay from "@/components/EarningsDisplay";
 import GroupExplorer from "@/components/GroupExplorer";
 import JoinGroup from "@/components/JoinGroup";
-import ThreeCoin from "@/components/ThreeCoin";
 import { WalletCard } from "@/components/WalletCard";
 import WithdrawEarnings from "@/components/WithdrawEarnings";
 import React, { useState } from "react";

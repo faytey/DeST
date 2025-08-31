@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { useWriteContract, useWaitForTransactionReceipt } from "wagmi";
 import { FACTORY_ABI, FACTORY_ADDRESS } from "../lib/contract";
-import { parseEther } from "viem";
 
 export default function CreateGroup() {
   const [amount, setAmount] = useState<string>("");

@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
-import { injected } from "wagmi/connectors";
 
 export const WalletCard = () => {
   const { address, isConnected } = useAccount();
@@ -25,6 +24,7 @@ export const WalletCard = () => {
         <div className="flex flex-col">
           {connectors.map((connector) => (
             <button
+              key={connector.uid}
               onClick={() => connect({ connector })}
               className="mt-2 bg-indigo-600 text-white p-2 rounded-full"
             >
