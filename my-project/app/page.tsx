@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
+import Image from "next/image";
 
 export default function Page() {
   const [gid, setGid] = useState(1);
@@ -230,9 +231,13 @@ export default function Page() {
             <div className="text-center">
               <div className="flex items-center justify-center space-x-2 mb-4">
                 <div className="h-6 w-6 rounded-lg bg-primary flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold text-xs">
-                    D
-                  </span>
+                  <Image
+                    src={"/logo.png"}
+                    alt="Logo"
+                    width={50}
+                    height={50}
+                    className="hue-rotate-250"
+                  />
                 </div>
                 <span className="text-lg font-semibold text-foreground">
                   DeST Protocol
