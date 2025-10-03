@@ -36,7 +36,7 @@ export default function Page() {
               className="text-sm font-medium rounded-full py-1"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-primary mr-1"></span>{" "}
-              Built on Lisk
+              Built On-Chain
             </Badge>
             {/* <Badge
                 variant="secondary"
