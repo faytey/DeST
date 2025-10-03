@@ -10,17 +10,32 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
 
 export const WalletCard = () => {
   const { address, isConnected } = useAccount();
   const { connectors, connect } = useConnect();
   const { disconnect } = useDisconnect();
+  const route = useRouter();
+  const pathname = usePathname();
 
   const formatAddress = (addr: string) => {
     return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
   };
 
   if (isConnected) {
+    // Check if the pathname is /destprotocol and redirect if so
+    if (pathname === "/") {
+      return (
+        <div className="flex items-center space-x-2">
+          <Link href={"/destprotocol"}>
+            <Button variant={"default"}>Launch App</Button>
+          </Link>
+        </div>
+      );
+    }
+
     return (
       <div className="flex items-center space-x-2">
         <Badge
@@ -64,7 +79,10 @@ export const WalletCard = () => {
         {connectors.map((connector) => (
           <DropdownMenuItem
             key={connector.uid}
-            onClick={() => connect({ connector })}
+            onClick={async () => {
+              await connect({ connector });
+              route.push("/destprotocol");
+            }}
             className="cursor-pointer"
           >
             {connector.name}

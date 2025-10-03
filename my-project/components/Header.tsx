@@ -7,17 +7,18 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ThemeToggle } from "./theme-toggle";
 import Image from "next/image";
+import { Button } from "./ui/button";
 
 export default function Header() {
   const { isConnected } = useAccount();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo and Brand */}
           <div className="flex items-center space-x-6">
-            <div className="flex items-center space-x-3">
+            <a href="/" className="flex items-center space-x-3 cursor-pointer">
               <div className="relative">
                 <Image
                   src={"/logo.png"}
@@ -37,7 +38,7 @@ export default function Header() {
                   Decentralized Savings & Thrift
                 </p>
               </div>
-            </div>
+            </a>
 
             {/* Desktop Navigation */}
             <nav className="hidden items-center space-x-1">

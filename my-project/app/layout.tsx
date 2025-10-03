@@ -1,6 +1,8 @@
 import { Providers } from "./provider";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
+import Header from "@/components/Header";
+import { Footer } from "@/components/Footer";
 
 export const metadata = {
   title: "DeST - Decentralized Savings & Thrift",
@@ -37,7 +39,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Providers>{children}</Providers>
+          <Providers>
+            <Header />
+            {children}
+            <Footer />
+          </Providers>
         </ThemeProvider>
       </body>
     </html>
