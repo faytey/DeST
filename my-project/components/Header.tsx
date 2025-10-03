@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { ThemeToggle } from "./theme-toggle";
 import Image from "next/image";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 export default function Header() {
   const { isConnected } = useAccount();
@@ -18,7 +19,10 @@ export default function Header() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo and Brand */}
           <div className="flex items-center space-x-6">
-            <a href="/" className="flex items-center space-x-3 cursor-pointer">
+            <Link
+              href="/"
+              className="flex items-center space-x-3 cursor-pointer"
+            >
               <div className="relative">
                 <Image
                   src={"/logo.png"}
@@ -38,7 +42,7 @@ export default function Header() {
                   Decentralized Savings & Thrift
                 </p>
               </div>
-            </a>
+            </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden items-center space-x-1">
