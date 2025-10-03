@@ -1,6 +1,6 @@
 # DeST
 
-### _Decentralized Savings & Thrift (Onchain Ajo)_
+### _Decentralized Savings & Thrift (Ajo Onchain)_
 
 **DeST** is a decentralized platform for **rotational savings groups and thrift contributions (Ajo/Esusu/Adashe)** powered by blockchain.  
 It brings the trusted social-finance models of African communities on-chain — combining **rotational savings, pooled lending, and DeFi-powered growth** into one transparent, trustless system.
